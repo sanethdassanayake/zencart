@@ -18,60 +18,29 @@ if (empty($email)) {
     echo ("Whoa, that's a long password! Please keep it under 20 characters.");
 } else {
 
-    $rs1 = Database::search("SELECT * FROM `user` WHERE `email`='$email'");
-    $num1 = $rs1->num_rows;
+    $rs = Database::search("SELECT * FROM `user` WHERE `email`='$email' AND `password`='$password'");
+    $num = $rs->num_rows;
 
-    $rs2 = Database::search("SELECT * FROM `user` WHERE  `password`='$password'");
-    $num2 = $rs2->num_rows;
+    if ($num > 0) {
+        $row = $rs->fetch_assoc();
 
-    if ($num1 > 0) {
-        if ($num2 > 0) {
+        if ($row["status_id"] == 1) {
+            $_SESSION["user"] = $row;
 
-            $row = $rs1->fetch_assoc();
+            if ($_POST["rmb"] == "true") {
+                setcookie("email", $email, time() + (60 * 60 * 24 * 7), "/");
+                setcookie("password", $password, time() + (60 * 60 * 24 * 7), "/");
+            } else {
+                setcookie("email", "", time() - 3600, "/");
+                setcookie("password", "", time() - 3600, "/");
+            }
+            
 
-                if ($row["status_id"] == 1) {
-                    $_SESSION["user"] = $row;
-
-                    if ($_POST["rmb"] == "true") {
-                        setcookie("email", $email, time() + (60 * 60 * 24 * 7));
-                        setcookie("password", $password, time() + (60 * 60 * 24 * 7));
-                    } else {
-                        setcookie("email", "", time() - 3600);
-                        setcookie("password", "", time() - 3600);
-                    }
-
-                    echo ("success");
-                } else {
-                    echo ("Oh no! Your account has been temporarily blocked. Please contact support for assistance.");
-                }
-
+            echo ("success");
         } else {
-            echo ("Your password is Invalid");
+            echo ("Oh no! Your account has been temporarily blocked. Please contact support for assistance.");
         }
     } else {
         echo ("It looks like this account isn't registered yet. Please sign up to get started.");
     }
-
-
-    // if ($num > 0) {
-    //     $row = $rs->fetch_assoc();
-
-    //     if ($row["status_id"] == 1) {
-    //         $_SESSION["user"] = $row;
-
-    //         if ($_POST["rmb"] == "true") {
-    //             setcookie("email", $email, time() + (60 * 60 * 24 * 7));
-    //             setcookie("password", $password, time() + (60 * 60 * 24 * 7));
-    //         } else {
-    //             setcookie("email", "", time() - 3600);
-    //             setcookie("password", "", time() - 3600);
-    //         }
-
-    //         echo ("success");
-    //     } else {
-    //         echo ("Oh no! Your account has been temporarily blocked. Please contact support for assistance.");
-    //     }
-    // } else {
-    //     echo ("It looks like this account isn't registered yet. Please sign up to get started.");
-    // }
 }
