@@ -23,10 +23,10 @@ function signIn() {
   req.onreadystatechange = function () {
     if (req.readyState == 4 && req.status == 200) {
       var resp = req.responseText;
-      // alert(resp);
 
       if (resp == "success") {
-        showAlert("Success", "Successfully!", "success");
+        // showAlert("Success", "Successfully!", "success");
+        window.location.href = "index.php";
       } else {
         showAlert("Error", resp, "error");
       }
