@@ -21,7 +21,29 @@
         <div class="row">
 
             <!-- Carousel -->
-            <div class="col-12 bg-white mb-4" style="height: 400px;">
+            <div class="col-12 bg-white mb-4 p-0">
+
+                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="assets/images/system-img/1.png" class="d-block w-100 carousel-img" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/images/system-img/2.png" class="d-block w-100 carousel-img" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/images/system-img/3.png" class="d-block w-100 carousel-img" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
 
             </div>
             <!-- Carousel -->
@@ -104,39 +126,39 @@
                 <div class="row d-flex justify-content-center">
 
                     <!-- Card 1 -->
-                        <div class="col-6 col-lg-3 col-xl-2">
-                            <div class="row p-1">
+                    <div class="col-6 col-lg-3 col-xl-2">
+                        <div class="row p-1">
 
-                                <div class="card shadow-sm product border-0 p-0 position-relative">
-                                    <div class="row card-body p-2">
-                                        <div class="position-absolute d-flex justify-content-end">
-                                            <a href="#" class="text-decoration-none text-dark fs-4">
-                                                <i class="bi bi-heart"></i>
-                                            </a>
+                            <div class="card shadow-sm product border-0 p-0 position-relative">
+                                <div class="row card-body p-2">
+                                    <div class="position-absolute d-flex justify-content-end">
+                                        <a href="#" class="text-decoration-none text-dark fs-4">
+                                            <i class="bi bi-heart"></i>
+                                        </a>
+                                    </div>
+
+                                    <img src="assets/images/black-t.png" alt="product-image" class="product-image">
+
+                                    <div class="text-center justify-content-center mt-2">
+                                        <h2 class="product-category">Man Shoes</h2>
+                                        <h2 class="product-name">Blue Nike Shoe</h2>
+                                        <div class="d-flex justify-content-center mb-2 gap-1">
+                                            <i class="bi bi-star-fill rating-star"></i>
+                                            <i class="bi bi-star-fill rating-star"></i>
+                                            <i class="bi bi-star-fill rating-star"></i>
+                                            <i class="bi bi-star-half rating-star"></i>
+                                            <i class="bi bi-star rating-star"></i>
                                         </div>
-
-                                        <img src="assets/images/black-t.png" alt="product-image" class="product-image">
-
-                                        <div class="text-center justify-content-center mt-2">
-                                            <h2 class="product-category">Man Shoes</h2>
-                                            <h2 class="product-name">Blue Nike Shoe</h2>
-                                            <div class="d-flex justify-content-center mb-2 gap-1">
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-half rating-star"></i>
-                                                <i class="bi bi-star rating-star"></i>
-                                            </div>
-                                            <div class="d-flex justify-content-center align-items-center gap-2">
-                                                <h2 class="after-price">$32.99</h2>
-                                                <h2 class="real-price"><s>$38.99</s></h2>
-                                            </div>
+                                        <div class="d-flex justify-content-center align-items-center gap-2">
+                                            <h2 class="after-price">$32.99</h2>
+                                            <h2 class="real-price"><s>$38.99</s></h2>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
+
                         </div>
+                    </div>
                     <!-- Card 1 -->
 
                     <!-- Card 2 -->

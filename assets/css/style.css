@@ -197,3 +197,9 @@
 .rating-product-img:hover{
   opacity: 80%;
 }
+
+.carousel-img{
+  height: 500px;
+  width: auto;
+  object-fit: cover;
+}
