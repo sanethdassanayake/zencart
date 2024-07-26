@@ -10,14 +10,14 @@ function showAlert(title, text, icon) {
 // Sweet alert
 
 function signIn() {
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
-  var rmb = document.getElementById("rmb").checked;
+  var email = document.getElementById("email");
+  var password = document.getElementById("password");
+  var rmb = document.getElementById("rmb");
 
   var form = new FormData();
-  form.append("email", email);
-  form.append("password", password);
-  form.append("rmb", rmb);
+  form.append("email", email.value);
+  form.append("password", password.value);
+  form.append("rmb", rmb.checked);
 
   var req = new XMLHttpRequest();
   req.onreadystatechange = function () {
