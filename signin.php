@@ -16,7 +16,7 @@
 
     <div class="container">
         <div class="row d-flex justify-content-center vh-100">
-            <div class="col-10 col-md-7 col-lg-4">
+            <div style="width: 400px;">
                 <div class="d-flex justify-content-center my-4">
                     <img src="assets/images/system-img/logo.png" style="width: auto; height: 80px;" alt="logo">
                 </div>
