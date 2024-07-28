@@ -12,10 +12,6 @@ if (empty($email)) {
     echo ("Hmm, that doesn't look like a valid email address. Could you double-check it?");
 } else if (empty($password)) {
     echo ("Hey, we need your password to keep your account secure. Please enter it.");
-} else if (strlen($password) < 6) {
-    echo ("Your password is a bit too short. It needs to be at least 6 characters long.");
-} else if (strlen($password) > 20) {
-    echo ("Whoa, that's a long password! Please keep it under 20 characters.");
 } else {
 
     $rs = Database::search("SELECT * FROM `user` WHERE `email`='$email' AND `password`='$password'");

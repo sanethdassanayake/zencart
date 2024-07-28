@@ -29,6 +29,10 @@ if (empty($fname)) {
     echo ("Please enter your password.");
 } else if (empty($repassword)) {
     echo ("Please enter your re-password.");
+} else if (strlen($password) < 6) {
+    echo ("Your password is a bit too short. It needs to be at least 6 characters long.");
+} else if (strlen($password) > 20) {
+    echo ("Whoa, that's a long password! Please keep it under 20 characters.");
 } else if ($password != $repassword) {
     echo ("Passwords do not match. Please re-enter your password.");
 } else {
