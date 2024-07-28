@@ -1,3 +1,7 @@
+<?php
+include "includes/connection.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,7 +94,23 @@
             <!-- Categories -->
             <div class="col-12 mb-3 d-flex flex-wrap justify-content-center gap-2">
 
-                <a href="#" class="text-decoration-none text-dark">
+                <?php
+                $rs = Database::search("SELECT * FROM `category`");
+                $num = $rs->num_rows;
+
+                if ($num > 0) {
+                    for ($i = 0; $i < $num; $i++) {
+                        $row = $rs->fetch_assoc();
+                ?>
+                        <a href="#" class="text-decoration-none text-dark">
+                            <h5 class="rounded-pill bg-white px-4 py-2"><?php echo($row["name"]);?></h5>
+                        </a>
+                <?php
+                    }
+                }
+                ?>
+
+                <!-- <a href="#" class="text-decoration-none text-dark">
                     <h5 class="rounded-pill bg-white px-4 py-2">Shoes</h5>
                 </a>
                 <a href="#" class="text-decoration-none text-dark">
@@ -116,7 +136,7 @@
                 </a>
                 <a href="#" class="text-decoration-none text-dark">
                     <h5 class="rounded-pill bg-white px-4 py-2">Hoodies</h5>
-                </a>
+                </a> -->
 
             </div>
             <!-- Categories -->

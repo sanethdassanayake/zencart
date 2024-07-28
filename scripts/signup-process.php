@@ -14,27 +14,27 @@ $phoneNumberHandler = new PhoneNumberHandler($mobile, $country_code);
 $processedNumber = $phoneNumberHandler->processPhoneNumber();
 
 if (empty($fname)) {
-    echo ("Please enter your first name.");
+    echo("Please enter your first name to proceed.");
 } else if (empty($lname)) {
-    echo ("Please enter your last name.");
+    echo("Don't forget to enter your last name.");
 } else if (empty($email)) {
-    echo ("Please enter your email address.");
+    echo("We need your email address to continue.");
 } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo ("Please enter a valid email address.");
+    echo("Hmm, that doesn't look like a valid email address. Could you check it again?");
 } else if (empty($mobile)) {
-    echo ("Please enter your mobile number.");
+    echo("Please provide your mobile number so we can reach you.");
 } else if ($processedNumber == "Invalid") {
-    echo ("Please enter a valid mobile number.");
+    echo("The mobile number you entered seems to be invalid. Please try again.");
 } else if (empty($password)) {
-    echo ("Please enter your password.");
+    echo("We need your password to keep your account secure. Please enter it.");
 } else if (empty($repassword)) {
-    echo ("Please enter your re-password.");
+    echo("Please confirm your password by entering it again.");
 } else if (strlen($password) < 6) {
-    echo ("Your password is a bit too short. It needs to be at least 6 characters long.");
+    echo("Your password is a bit too short. It needs to be at least 6 characters long.");
 } else if (strlen($password) > 20) {
-    echo ("Whoa, that's a long password! Please keep it under 20 characters.");
+    echo("Whoa, that's a long password! Please keep it under 20 characters.");
 } else if ($password != $repassword) {
-    echo ("Passwords do not match. Please re-enter your password.");
+    echo("The passwords do not match. Please re-enter them to ensure they're the same.");
 } else {
     $rs = Database::search("SELECT * FROM `user` WHERE `email`='$email'");
     $num = $rs->num_rows;
@@ -42,7 +42,7 @@ if (empty($fname)) {
     if ($num > 0) {
         echo("This account already exists. Please sign in.");
     } else {
-        Database::iud("INSERT INTO `user`(`fname`,`lname`,`email`,`mobile`,`password`,`status_id`,`account_type_id`) VALUES ('$fname','$lname','$email','$processedNumber','$password',1,2)");
+        Database::iud("INSERT INTO `user`(`fname`, `lname`, `email`, `mobile`, `password`, `status_id`, `account_type_id`) VALUES ('$fname', '$lname', '$email', '$processedNumber', '$password', 1, 2)");
         echo("success");
     }
 }
