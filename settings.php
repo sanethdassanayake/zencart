@@ -1,3 +1,7 @@
+<?php
+include "includes/connection.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,47 +74,50 @@
                                     <div class="col-12 col-lg-9 mt-3">
                                         <h5 class="mt-2 mb-4" style="font-weight: 600;">Account Details</h5>
 
-                                        <div class="col-12 mb-3 d-flex">
-                                            <div class="col-6 d-grid pe-2">
-                                                <label class="form-label" for="fname">First Name</label>
-                                                <input id="fname" class="form-control" type="text" placeholder="First Name" value="Saneth">
-                                            </div>
-                                            <div class="col-6 d-grid ps-2">
-                                                <label class="form-label" for="lname">Last Name</label>
-                                                <input id="lname" class="form-control" type="text" placeholder="Last Name" value="Dassanayake">
-                                            </div>
-                                        </div>
+                                        <?php
+                                        $rs = Database::search("SELECT * FROM `user` WHERE `email` = '" . $_COOKIE["email"] . "' AND `password` = '" . $_COOKIE["password"] . "'");
+                                        $num = $rs->num_rows;
 
-                                        <div class="col-12 mb-3">
-                                            <label class="form-label" for="email">Email Address</label>
-                                            <input id="email" class="form-control" type="text" value="saneth43729@gmail.com" disabled>
-                                        </div>
+                                        if ($num > 0) {
+                                            $row = $rs->fetch_assoc();
+                                        ?>
+                                            <div class="col-12 mb-3 d-flex">
+                                                <div class="col-6 d-grid pe-2">
+                                                    <label class="form-label" for="fname">First Name</label>
+                                                    <input id="fname" class="form-control shadow-none" type="text" placeholder="First Name" value="<?php echo ($row["fname"]); ?>">
+                                                </div>
+                                                <div class="col-6 d-grid ps-2">
+                                                    <label class="form-label" for="lname">Last Name</label>
+                                                    <input id="lname" class="form-control shadow-none" type="text" placeholder="Last Name" value="<?php echo ($row["lname"]); ?>">
+                                                </div>
+                                            </div>
 
-                                        <div class="col-12 mb-3">
-                                            <div class="d-flex justify-content-between">
-                                                <label class="form-label" for="password">Password</label>
-                                                <a href="#" class="form-text">Change Password</a>
+                                            <div class="col-12 mb-3">
+                                                <label class="form-label" for="email">Email Address</label>
+                                                <input id="email" class="form-control shadow-none" type="text" value="<?php echo ($row["email"]); ?>" disabled>
                                             </div>
-                                            <input id="password" class="form-control" type="password" value="thisIsTestPassword" disabled>
-                                        </div>
 
-                                        <div class="col-12 mb-5 d-flex">
-                                            <div class="col-6 d-grid pe-2">
-                                                <label class="form-label" for="mobile">Mobile</label>
-                                                <input id="mobile" class="form-control" type="text" placeholder="Mobile Number" value="0767356796">
+                                            <div class="col-12 mb-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <label class="form-label" for="password">Password</label>
+                                                    <a href="#" class="form-text">Change Password</a>
+                                                </div>
+                                                <input id="password" class="form-control shadow-none" type="password" value="<?php echo ($row["password"]); ?>" disabled>
                                             </div>
-                                            <div class="col-6 d-grid ps-2">
-                                                <label class="form-label" for="country">Country/region</label>
-                                                <select class="form-select" id="country">
-                                                    <option value="1" selected>Sri Lanka</option>
-                                                    <option value="2">United Kindom</option>
-                                                    <option value="3">United States</option>
-                                                    <option value="4">Russia</option>
-                                                    <option value="5">New Zealand</option>
-                                                    <option value="6">Japan</option>
-                                                </select>
+
+                                            <div class="col-12 mb-5">
+                                                <div class="d-flex justify-content-between">
+                                                    <label class="form-label" for="mobile">Mobile</label>
+                                                    <a href="#" class="form-text">Change Mobile</a>
+                                                </div>
+                                                <input id="mobile" class="form-control shadow-none" type="text" value="<?php echo ($row["mobile"]); ?>" disabled>
                                             </div>
-                                        </div>
+
+                                        <?php
+                                        } else {
+                                            echo ("No Users");
+                                        }
+                                        ?>
 
                                         <hr class="border-secondary">
 
@@ -123,43 +130,44 @@
                                         <div class="col-12 mb-3">
                                             <div class="row p-2 d-flex gap-4">
 
-                                                <div class="p-3 shadow-sm border rounded-2">
-                                                    <div class="d-flex mb-2 gap-2">
-                                                        <i class="bi bi-person"></i>
-                                                        <span class="text-wrap text-start">Saneth Dassanayake</span>
-                                                    </div>
-                                                    <div class="d-flex mb-2 gap-2">
-                                                        <i class="bi bi-telephone"></i>
-                                                        <span class="text-wrap text-start">0767356796</span>
-                                                    </div>
-                                                    <div class="d-flex mb-2 gap-2">
-                                                        <i class="bi bi-geo-alt"></i>
-                                                        <span class="text-wrap text-start"> 9 Canal Road, Vijayapura, Anuradhapura, North Central, Sri Lanka, 50000</span>
-                                                    </div>
-                                                    <div class="d-flex mt-2 gap-3">
-                                                        <a class="ms-4 text-decoration-underline">Edit</a>
-                                                        <a class="text-decoration-underline">Delete</a>
-                                                    </div>
-                                                </div>
+                                                <?php
+                                                $rs2 =  Database::search("SELECT * FROM `address` WHERE `user_id`='" . $row["id"] . "'");
+                                                $num2 = $rs2->num_rows;
 
-                                                <div class="p-3 shadow-sm border rounded-2">
-                                                    <div class="d-flex mb-2 gap-2">
-                                                        <i class="bi bi-person"></i>
-                                                        <span class="text-wrap text-start">Saneth Dassanayake</span>
-                                                    </div>
-                                                    <div class="d-flex mb-2 gap-2">
-                                                        <i class="bi bi-telephone"></i>
-                                                        <span class="text-wrap text-start">0767356796</span>
-                                                    </div>
-                                                    <div class="d-flex mb-2 gap-2">
-                                                        <i class="bi bi-geo-alt"></i>
-                                                        <span class="text-wrap text-start"> 9 Canal Road, Vijayapura, Anuradhapura, North Central, Sri Lanka, 50000</span>
-                                                    </div>
-                                                    <div class="d-flex mt-2 gap-3">
-                                                        <a class="ms-4 text-decoration-underline">Edit</a>
-                                                        <a class="text-decoration-underline">Delete</a>
-                                                    </div>
-                                                </div>
+                                                if ($num2 > 0) {
+                                                    for ($i = 0; $i < $num2; $i++) {
+                                                        $row2 = $rs2->fetch_assoc();
+
+                                                        if ($row2["status_id"] == 1) {
+                                                ?>
+                                                            <div class="p-3 shadow-sm border rounded-2">
+                                                                <div class="d-flex mb-2 gap-2">
+                                                                    <i class="bi bi-geo-alt"></i>
+                                                                    <div class="d-grid">
+                                                                        <span class="text-wrap text-start"><?php echo ($row2["line_one"]); ?></span>
+                                                                        <span class="text-wrap text-start"><?php echo ($row2["line_two"]); ?></span>
+                                                                        <span class="text-wrap text-start"><?php echo ($row2["city"]); ?></span>
+                                                                        <span class="text-wrap text-start"><?php echo ($row2["province"]); ?></span>
+                                                                        <span class="text-wrap text-start"><?php echo ($row2["postal_code"]); ?></span>
+                                                                        <?php
+                                                                        $rs3 = Database::search("SELECT `name` FROM `country` WHERE `id` = '" . $row2["country_id"] . "'");
+                                                                        $row3 = $rs3->fetch_assoc();
+                                                                        ?>
+                                                                        <span class="text-wrap text-start"><?php echo ($row3["name"]); ?></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex mt-2 gap-3">
+                                                                    <a class="ms-4 text-decoration-underline">Edit</a>
+                                                                    <a class="text-decoration-underline">Delete</a>
+                                                                </div>
+                                                            </div>
+                                                <?php
+                                                        }
+                                                    }
+                                                } else {
+                                                    echo ("No Address");
+                                                }
+                                                ?>
 
                                             </div>
                                         </div>
