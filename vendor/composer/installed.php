@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '4d7ef5c07b267ac9e9644496084c9c35b0758b7f',
+        'reference' => '8f016865a00dd82e88bcd2a78d6611ed31540610',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,16 +13,16 @@
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '4d7ef5c07b267ac9e9644496084c9c35b0758b7f',
+            'reference' => '8f016865a00dd82e88bcd2a78d6611ed31540610',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
         'giggsey/libphonenumber-for-php' => array(
-            'pretty_version' => '8.13.41',
-            'version' => '8.13.41.0',
-            'reference' => 'd7131cda85cf9244e7c97d73edd14d8dad73640c',
+            'pretty_version' => '8.13.42',
+            'version' => '8.13.42.0',
+            'reference' => 'b7ee848bbd1958ff7464522d5c6e3688cca2a125',
             'type' => 'library',
             'install_path' => __DIR__ . '/../giggsey/libphonenumber-for-php',
             'aliases' => array(),
@@ -31,7 +31,7 @@
         'giggsey/libphonenumber-for-php-lite' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => '8.13.41',
+                0 => '8.13.42',
             ),
         ),
         'giggsey/locale' => array(

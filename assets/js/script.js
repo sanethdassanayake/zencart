@@ -1,10 +1,15 @@
 // Sweet alert
 function showAlert(title, text, icon) {
-  return Swal.fire({
+  Swal.fire({
     title: title,
     text: text,
     icon: icon,
-    color: "#111",
+    confirmButtonText: "OK",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Reload the page if the user clicked "OK"
+      window.location.reload();
+    }
   });
 }
 // Sweet alert
@@ -91,13 +96,116 @@ function bizRegister() {
       resp = req.responseText;
       if (resp == "success") {
         showAlert("Success", "Success", "success");
-      }else if(resp == "signin"){
-        showAlert("Error", "It looks like you don’t have an account yet. Please sign up first.", "error");
+      } else if (resp == "signin") {
+        showAlert(
+          "Error",
+          "It looks like you don’t have an account yet. Please sign up first.",
+          "error"
+        );
       } else {
         showAlert("Error", resp, "error");
       }
     }
   };
   req.open("POST", "/zencart/scripts/create-biz-process.php", true);
+  req.send(form);
+}
+
+const inputElement = document.getElementById("password");
+
+function activeUpdate() {
+  var btn = document.getElementById("updateBtn");
+  if (btn.disabled) {
+    btn.disabled = false;
+  }
+}
+
+function userDetailsUpdate(id) {
+  var fname = document.getElementById("fname");
+  var lname = document.getElementById("lname");
+  var password = document.getElementById("password");
+  var mobile = document.getElementById("mobile");
+
+  var form = new FormData();
+  form.append("userId", id);
+  form.append("fname", fname.value);
+  form.append("lname", lname.value);
+  form.append("password", password.value);
+  form.append("mobile", mobile.value);
+
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      resp = req.responseText;
+      if (resp == "success") {
+        showAlert("Success", "Update successfuly!", "success");
+      } else {
+        showAlert("Error", resp, "error");
+      }
+    }
+  };
+  req.open("POST", "/zencart/scripts/user-details-update-process.php", true);
+  req.send(form);
+}
+
+function changePassword() {
+  var password = document.getElementById("password2");
+  var repassword = document.getElementById("repassword2");
+
+  var passwordField = document.getElementById("password");
+
+  var form = new FormData();
+  form.append("password", password.value);
+  form.append("repassword", repassword.value);
+
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      resp = req.responseText;
+      if (resp == "success") {
+        passwordField.value = password.value;
+        activeUpdate();
+      } else {
+        showAlert("Error", resp, "error");
+      }
+    }
+  };
+  req.open("POST", "/zencart/scripts/change-password-process.php", true);
+  req.send(form);
+}
+
+function changeMobile() {
+  var country_code = document.getElementById("country_code");
+  var mobile = document.getElementById("mobile2");
+
+  var mobileField = document.getElementById("mobile");
+
+  var form = new FormData();
+  form.append("country_code", country_code.value);
+  form.append("mobile", mobile.value);
+
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      resp = req.responseText;
+      if (resp == "empty") {
+        showAlert(
+          "Error",
+          "Please provide your mobile number so we can reach you.",
+          "error"
+        );
+      } else if (resp == "invalid") {
+        showAlert(
+          "Error",
+          "The mobile number you entered seems to be invalid. Please try again.",
+          "error"
+        );
+      } else {
+        mobileField.value = resp;
+        activeUpdate();
+      }
+    }
+  };
+  req.open("POST", "/zencart/scripts/change-mobile-process.php", true);
   req.send(form);
 }

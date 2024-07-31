@@ -48,7 +48,8 @@
 }
 
 .nav-button:hover {
-  background-color: #222e3c10;
+  /* background-color: #222e3c10; */
+  text-decoration: underline;
   border-radius: 8px;
 }
 

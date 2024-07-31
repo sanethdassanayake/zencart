@@ -35,36 +35,24 @@
                         Caregories
                     </a>
 
-                    <ul class="dropdown-menu border-0 shadow mt-2 p-0" style="width: 800px;">
+                    <ul class="dropdown-menu border-0 shadow mt-2 p-0" style="width: 680px;">
                         <div class="col-12 px-4 py-2">
                             <div class="row d-flex">
-                                <div class="col-3 nav-button py-2">
-                                    <a href="category-item.php" class="text-decoration-none text-dark p-2 flex-nowrap">T-Shirts</a>
-                                </div>
-                                <div class="col-3 nav-button py-2">
-                                    <a href="#" class="text-decoration-none text-dark p-2 flex-nowrap">Shitrs</a>
-                                </div>
-                                <div class="col-3 nav-button py-2">
-                                    <a href="#" class="text-decoration-none text-dark  p-2 flex-nowrap">Jeans</a>
-                                </div>
-                                <div class="col-3 nav-button py-2">
-                                    <a href="#" class="text-decoration-none text-dark p-2 flex-nowrap">Jackets</a>
-                                </div>
-                                <div class="col-3 nav-button py-2">
-                                    <a href="#" class="text-decoration-none text-dark p-2 flex-nowrap">Footware</a>
-                                </div>
-                                <div class="col-3 nav-button py-2">
-                                    <a href="#" class="text-decoration-none text-dark p-2 flex-nowrap">Skirts</a>
-                                </div>
-                                <div class="col-3 nav-button py-2">
-                                    <a href="#" class="text-decoration-none text-dark p-2 flex-nowrap">Hoodies</a>
-                                </div>
-                                <div class="col-3 nav-button py-2">
-                                    <a href="#" class="text-decoration-none text-dark p-2 flex-nowrap">Undergarments</a>
-                                </div>
-                                <div class="col-3 nav-button py-2">
-                                    <a href="#" class="text-decoration-none text-dark p-2 flex-nowrap">Accessories</a>
-                                </div>
+                                <?php
+                                $rs = Database::search("SELECT * FROM `category`");
+                                $num = $rs->num_rows;
+
+                                if ($num > 0) {
+                                    for ($i = 0; $i < $num; $i++) {
+                                        $row = $rs->fetch_assoc();
+                                ?>
+                                        <div class="col-3 nav-button py-2">
+                                            <a href="category-item.php?id=<?php echo ($row["id"]); ?>" class="text-decoration-none text-dark p-2 flex-nowrap"><?php echo ($row["name"]); ?></a>
+                                        </div>
+                                <?php
+                                    }
+                                }
+                                ?>
                             </div>
                         </div>
                     </ul>
@@ -110,12 +98,23 @@
                             <a href="orders.php" class="text-decoration-none text-dark nav-button p-2">My Orders</a>
                             <a href="messages.php" class="text-decoration-none text-dark nav-button p-2">Messages</a>
                             <a href="payments.php" class="text-decoration-none text-dark nav-button p-2">Payments</a>
-                            <a href="settings.php" class="text-decoration-none text-dark nav-button p-2">Settings</a>
                             <a href="ratings.php" class="text-decoration-none text-dark nav-button p-2">My Ratings</a>
+                            <a href="settings.php" class="text-decoration-none text-dark nav-button p-2">Settings</a>
                             <hr class="border-secondary">
-                            <a href="#" class="text-decoration-none text-secondary nav-button p-2">My Products</a>
-                            <a href="#" class="text-decoration-none text-secondary nav-button p-2">Stock</a>
-                            <a href="#" class="text-decoration-none text-secondary nav-button p-2">Sales</a>
+                            <a href="#" class="text-decoration-none text-dark nav-button p-2">Log Out</a>
+                            <?php
+                            $rs2 = Database::search("SELECT * FROM `business` WHERE `user_id` = '$userId'");
+                            $num2 = $rs2->num_rows;
+
+                            if ($num2 > 0) {
+                            ?>
+                                <hr class="border-secondary">
+                                <a href="#" class="text-decoration-none text-secondary nav-button p-2">My Products</a>
+                                <a href="#" class="text-decoration-none text-secondary nav-button p-2">Stock</a>
+                                <a href="#" class="text-decoration-none text-secondary nav-button p-2">Sales</a>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </ul>
                 </div>
@@ -183,11 +182,19 @@
 
                         <div class="collapse" id="collapseExample">
                             <div class="card card-body border-0 gap-2">
-                                <a href="#" class="text-decoration-none text-dark nav-button fs-5 p-2">Shoes</a>
-                                <a href="#" class="text-decoration-none text-dark nav-button fs-5 p-2">Hooedies</a>
-                                <a href="#" class="text-decoration-none text-dark nav-button fs-5 p-2">Pants</a>
-                                <a href="#" class="text-decoration-none text-dark nav-button fs-5 p-2">T-Shirts</a>
-                                <a href="#" class="text-decoration-none text-dark nav-button fs-5 p-2">Jackets</a>
+                                <?php
+                                $rs3 = Database::search("SELECT * FROM `category`");
+                                $num3 = $rs3->num_rows;
+
+                                if ($num3 > 0) {
+                                    for ($i = 0; $i < $num3; $i++) {
+                                        $row2 = $rs3->fetch_assoc();
+                                ?>
+                                        <a href="category-item.php?id=<?php echo ($row2["id"]); ?>" class="text-decoration-none text-dark nav-button fs-5 p-2"><?php echo ($row2["name"]); ?></a>
+                                <?php
+                                    }
+                                }
+                                ?>
                             </div>
                         </div>
 
