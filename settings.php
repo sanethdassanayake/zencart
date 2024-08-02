@@ -85,7 +85,7 @@ if (isset($_SESSION["user"])) {
                                                         }
                                                         ?>" class="w-100 settings-user-img" alt="user-img" id="imageContainer">
                                             <div class="position-absolute end-0 me-4 mt-3">
-                                                <button class="btn btn-light rounded-2" data-bs-toggle="modal" data-bs-target="#changeImage"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-light rounded-2" data-bs-toggle="modal" data-bs-target="#changeImage"><i class="bi bi-camera"></i></button>
 
                                                 <!-- Change Image Modal -->
                                                 <div class="modal fade" id="changeImage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
