@@ -83,9 +83,28 @@ if (isset($_SESSION["user"])) {
                                                         } else {
                                                             echo ("assets/images/profile-img/default_user.png");
                                                         }
-                                                        ?>" class="w-100 settings-user-img" alt="user-img">
+                                                        ?>" class="w-100 settings-user-img" alt="user-img" id="imageContainer">
                                             <div class="position-absolute end-0 me-4 mt-3">
-                                                <button class="btn btn-light rounded-2"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-light rounded-2" data-bs-toggle="modal" data-bs-target="#changeImage"><i class="bi bi-pencil"></i></button>
+
+                                                <!-- Change Image Modal -->
+                                                <div class="modal fade" id="changeImage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="d-flex justify-content-between align-items-center p-2">
+                                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Select Image</h1>
+                                                                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <input class="form-control shadow-none" type="file" id="profileImg">
+                                                            </div>
+                                                            <div class="d-flex justify-content-end gap-2 p-2">
+                                                                <button type="button" class="btn btn-primary" onclick="saveProfileImg();">Save</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Change Image Modal -->
                                             </div>
                                         </div>
 
@@ -132,7 +151,6 @@ if (isset($_SESSION["user"])) {
                                                                     </div>
                                                                 </div>
                                                                 <div class="d-flex justify-content-end gap-2 p-2">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="changePassword();">Change</button>
                                                                 </div>
                                                             </div>
@@ -178,7 +196,6 @@ if (isset($_SESSION["user"])) {
                                                                     </div>
                                                                 </div>
                                                                 <div class="d-flex justify-content-end gap-2 p-2">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="changeMobile();">Change</button>
                                                                 </div>
                                                             </div>
@@ -201,8 +218,34 @@ if (isset($_SESSION["user"])) {
                                             <h5 class="mb-4 mt-5" style="font-weight: 600;">Shipping Address</h5>
 
                                             <div class="col-12 mb-2">
-                                                <button class="btn btn-dark">Add New Address</button>
+                                                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addAddress">Add New Address</button>
                                             </div>
+
+                                            <!-- Add address model -->
+                                            <div class="modal fade" id="addAddress" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog  modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="d-flex justify-content-between align-items-center p-2">
+                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Change Mobile</h1>
+                                                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div>
+                                                                <label class="form-label" for="lineOne">Line 1</label>
+                                                                <input class="form-control" id="lineOne" type="text">
+                                                            </div>
+                                                            <div>
+                                                                <label class="form-label" for="lineTwo">Line 1</label>
+                                                                <input class="form-control" id="lineTwo" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex justify-content-end gap-2 p-2">
+                                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="">Change</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Add address model -->
 
                                             <div class="col-12 mb-3">
                                                 <div class="row p-2 d-flex gap-4">

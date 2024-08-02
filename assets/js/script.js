@@ -148,7 +148,7 @@ function userDetailsUpdate(id) {
   req.send(form);
 }
 
-function changePassword() {
+function changePassword(id) {
   var password = document.getElementById("password2");
   var repassword = document.getElementById("repassword2");
 
@@ -174,7 +174,7 @@ function changePassword() {
   req.send(form);
 }
 
-function changeMobile() {
+function changeMobile(id) {
   var country_code = document.getElementById("country_code");
   var mobile = document.getElementById("mobile2");
 
@@ -207,5 +207,32 @@ function changeMobile() {
     }
   };
   req.open("POST", "/zencart/scripts/change-mobile-process.php", true);
+  req.send(form);
+}
+
+function saveProfileImg() {
+  var img = document.getElementById("profileImg");
+
+  var form = new FormData();
+  form.append("img", img.files[0]);
+
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function(){
+    if (req.readyState == 4 && req.status == 200) {
+      resp = req.responseText;
+
+      if (resp == "empty") {
+        showAlert(
+          "Error",
+          "Please select your profile image.",
+          "error"
+        );
+      }else{
+        // document.getElementById("imageContainer").src = resp;
+        window.location.reload();
+      }
+    }
+  }
+  req.open("POST","/zencart/scripts/save-profile-img-process.php");
   req.send(form);
 }

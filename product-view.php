@@ -1,3 +1,11 @@
+<?php
+include "includes/connection.php";
+session_start();
+
+$userId = $_SESSION["user"]["id"];
+
+if (isset($_SESSION["user"])) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,39 +88,39 @@
                         <label class="form-label fw-bold" for="sizeGroup">Select Size:</label>
                         <div class="btn-group gap-2 d-block" role="group" aria-label="Basic radio toggle button group">
                             <input type="radio" class="btn-check" name="sizeGroup" id="btnradio1" autocomplete="off" checked>
-                            <label class="btn btn-outline-dark rounded-2 px-4" for="btnradio1">S</label>
+                            <label class="btn btn-outline-dark rounded-2 px-4 my-1" for="btnradio1">S</label>
 
                             <input type="radio" class="btn-check" name="sizeGroup" id="btnradio2" autocomplete="off">
-                            <label class="btn btn-outline-dark rounded-2 px-4" for="btnradio2">M</label>
+                            <label class="btn btn-outline-dark rounded-2 px-4 my-1" for="btnradio2">M</label>
 
                             <input type="radio" class="btn-check" name="sizeGroup" id="btnradio3" autocomplete="off">
-                            <label class="btn btn-outline-dark rounded-2 px-4" for="btnradio3">L</label>
+                            <label class="btn btn-outline-dark rounded-2 px-4 my-1" for="btnradio3">L</label>
 
                             <input type="radio" class="btn-check" name="sizeGroup" id="btnradio4" autocomplete="off">
-                            <label class="btn btn-outline-dark rounded-2 px-4" for="btnradio4">XL</label>
+                            <label class="btn btn-outline-dark rounded-2 px-4 my-1" for="btnradio4">XL</label>
 
                             <input type="radio" class="btn-check" name="sizeGroup" id="btnradio5" autocomplete="off">
-                            <label class="btn btn-outline-dark rounded-2 px-4" for="btnradio5">XXL</label>
+                            <label class="btn btn-outline-dark rounded-2 px-4 my-1" for="btnradio5">XXL</label>
                         </div>
                     </div>
 
                     <div class="mb-2">
                         <label class="form-label fw-bold" for="colorGroup">Select Color:</label>
                         <div class="btn-group gap-2 d-block" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="colorGroup" id="colorRadio1" autocomplete="off" checked>
-                            <label class="btn btn-outline-dark rounded-2 px-4" for="colorRadio1">Red</label>
+                            <input type="radio" class="btn-check my" name="colorGroup" id="colorRadio1" autocomplete="off" checked>
+                            <label class="btn btn-outline-dark rounded-2 px-4 my-1" for="colorRadio1">Red</label>
 
-                            <input type="radio" class="btn-check" name="colorGroup" id="colorRadio2" autocomplete="off">
-                            <label class="btn btn-outline-dark rounded-2 px-4" for="colorRadio2">Blue</label>
+                            <input type="radio" class="btn-check my" name="colorGroup" id="colorRadio2" autocomplete="off">
+                            <label class="btn btn-outline-dark rounded-2 px-4 my-1" for="colorRadio2">Blue</label>
 
-                            <input type="radio" class="btn-check" name="colorGroup" id="colorRadio3" autocomplete="off">
-                            <label class="btn btn-outline-dark rounded-2 px-4" for="colorRadio3">Green</label>
+                            <input type="radio" class="btn-check my" name="colorGroup" id="colorRadio3" autocomplete="off">
+                            <label class="btn btn-outline-dark rounded-2 px-4 my-1" for="colorRadio3">Green</label>
 
-                            <input type="radio" class="btn-check" name="colorGroup" id="colorRadio4" autocomplete="off">
-                            <label class="btn btn-outline-dark rounded-2 px-4" for="colorRadio4">Yellow</label>
+                            <input type="radio" class="btn-check my" name="colorGroup" id="colorRadio4" autocomplete="off">
+                            <label class="btn btn-outline-dark rounded-2 px-4 my-1" for="colorRadio4">Yellow</label>
 
-                            <input type="radio" class="btn-check" name="colorGroup" id="colorRadio5" autocomplete="off">
-                            <label class="btn btn-outline-dark rounded-2 px-4" for="colorRadio5">Black</label>
+                            <input type="radio" class="btn-check my" name="colorGroup" id="colorRadio5" autocomplete="off">
+                            <label class="btn btn-outline-dark rounded-2 px-4 my-1" for="colorRadio5">Black</label>
                         </div>
                     </div>
 
@@ -126,7 +134,7 @@
                         <a href="#" class="form-label text-dark" for="">Change address</a>
                     </div>
 
-                    <div class="d-grid border border-warning rounded-2 shadow-sm bg-warning-subtle gap-2 mb-2 p-2">
+                    <div class="d-grid border border-secondary-subtle rounded-2 shadow-sm gap-2 mb-2 p-2">
                         <div class="d-flex gap-2">
                             <i class="bi bi-person"></i>
                             <span class="text-wrap text-start">Saneth Dassanayake</span>
@@ -476,7 +484,7 @@
                             </div>
 
                             <div>
-                                <div class="rounded-2 border-top p-2">
+                                <div class="border-top p-2">
                                     <div class="d-flex gap-2">
                                         <i class="bi bi-person-circle fs-3"></i>
                                         <div class="mt-2">
@@ -507,7 +515,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="rounded-2 border-top p-2">
+                                <div class="border-top p-2">
                                     <div class="d-flex gap-2">
                                         <i class="bi bi-person-circle fs-3"></i>
                                         <div class="mt-2">
@@ -590,3 +598,8 @@
 </body>
 
 </html>
+<?php
+}else{
+    header('Location:signin.php');
+}
+?>

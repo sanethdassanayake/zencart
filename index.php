@@ -114,34 +114,6 @@ if (isset($_SESSION["user"])) {
                     }
                     ?>
 
-                    <!-- <a href="#" class="text-decoration-none text-dark">
-                    <h5 class="rounded-pill bg-white px-4 py-2">Shoes</h5>
-                </a>
-                <a href="#" class="text-decoration-none text-dark">
-                    <h5 class="rounded-pill bg-white px-4 py-2">Trouser</h5>
-                </a>
-                <a href="#" class="text-decoration-none text-dark">
-                    <h5 class="rounded-pill bg-white px-4 py-2">Shorts</h5>
-                </a>
-                <a href="#" class="text-decoration-none text-dark">
-                    <h5 class="rounded-pill bg-white px-4 py-2">Shirts</h5>
-                </a>
-                <a href="#" class="text-decoration-none text-dark">
-                    <h5 class="rounded-pill bg-white px-4 py-2">Accessories</h5>
-                </a>
-                <a href="#" class="text-decoration-none text-dark">
-                    <h5 class="rounded-pill bg-white px-4 py-2">Jeans</h5>
-                </a>
-                <a href="#" class="text-decoration-none text-dark">
-                    <h5 class="rounded-pill bg-white px-4 py-2">Jackets</h5>
-                </a>
-                <a href="#" class="text-decoration-none text-dark">
-                    <h5 class="rounded-pill bg-white px-4 py-2">Pants</h5>
-                </a>
-                <a href="#" class="text-decoration-none text-dark">
-                    <h5 class="rounded-pill bg-white px-4 py-2">Hoodies</h5>
-                </a> -->
-
                 </div>
                 <!-- Categories -->
 
@@ -161,7 +133,7 @@ if (isset($_SESSION["user"])) {
                                             </a>
                                         </div>
 
-                                        <img src="assets/images/black-t.png" alt="product-image" class="product-image">
+                                        <img src="assets/images/product-img/black-t.png" alt="product-image" class="product-image">
 
                                         <div class="text-center justify-content-center mt-2">
                                             <h2 class="product-category">Man Shoes</h2>
@@ -198,7 +170,7 @@ if (isset($_SESSION["user"])) {
                                                 </a>
                                             </div>
 
-                                            <img src="assets/images/red-t.png" alt="product-image" class="product-image">
+                                            <img src="assets/images/product-img/red-t.png" alt="product-image" class="product-image">
 
                                             <div class="text-center justify-content-center mt-2">
                                                 <h2 class="product-category">Man Shoes</h2>
@@ -236,7 +208,7 @@ if (isset($_SESSION["user"])) {
                                                 </a>
                                             </div>
 
-                                            <img src="assets/images/green-t.png" alt="product-image" class="product-image">
+                                            <img src="assets/images/product-img/green-t.png" alt="product-image" class="product-image">
 
                                             <div class="text-center justify-content-center mt-2">
                                                 <h2 class="product-category">Man Shoes</h2>
@@ -274,7 +246,7 @@ if (isset($_SESSION["user"])) {
                                                 </a>
                                             </div>
 
-                                            <img src="assets/images/olive-t.png" alt="product-image" class="product-image">
+                                            <img src="assets/images/product-img/olive-t.png" alt="product-image" class="product-image">
 
                                             <div class="text-center justify-content-center mt-2">
                                                 <h2 class="product-category">Man Shoes</h2>
@@ -312,7 +284,7 @@ if (isset($_SESSION["user"])) {
                                                 </a>
                                             </div>
 
-                                            <img src="assets/images/olive-t.png" alt="product-image" class="product-image">
+                                            <img src="assets/images/product-img/red-t.png" alt="product-image" class="product-image">
 
                                             <div class="text-center justify-content-center mt-2">
                                                 <h2 class="product-category">Man Shoes</h2>
@@ -350,7 +322,7 @@ if (isset($_SESSION["user"])) {
                                                 </a>
                                             </div>
 
-                                            <img src="assets/images/olive-t.png" alt="product-image" class="product-image">
+                                            <img src="assets/images/product-img/red-t.png" alt="product-image" class="product-image">
 
                                             <div class="text-center justify-content-center mt-2">
                                                 <h2 class="product-category">Man Shoes</h2>
