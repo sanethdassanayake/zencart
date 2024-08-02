@@ -18,7 +18,7 @@ if (empty($_FILES["img"])) {
     $path = "../assets/images/profile-img/" . $newImgName;
     move_uploaded_file($_FILES["img"]["tmp_name"], $path);
     
-    $savePath = "assets/images/profile-img/" . $newImgName;
+    $savePath = "/zencart/assets/images/profile-img/" . $newImgName;
     Database::iud("UPDATE `user` SET `img` = '$savePath' WHERE `id` = '".$user['id']."'");
     echo($path);
 }

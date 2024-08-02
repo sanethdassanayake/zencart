@@ -164,7 +164,7 @@ function changePassword(id) {
       resp = req.responseText;
       if (resp == "success") {
         passwordField.value = password.value;
-        activeUpdate();
+        activeUpdate(); 
       } else {
         showAlert("Error", resp, "error");
       }

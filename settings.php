@@ -81,7 +81,7 @@ if (isset($_SESSION["user"])) {
                                                         if (!empty($row["img"])) {
                                                             echo ($row["img"]);
                                                         } else {
-                                                            echo ("assets/images/profile-img/default_user.png");
+                                                            echo ("/zencart/assets/images/profile-img/default_user.png");
                                                         }
                                                         ?>" class="w-100 settings-user-img" alt="user-img" id="imageContainer">
                                             <div class="position-absolute end-0 me-4 mt-3">
