@@ -164,7 +164,7 @@ function changePassword(id) {
       resp = req.responseText;
       if (resp == "success") {
         passwordField.value = password.value;
-        activeUpdate(); 
+        activeUpdate();
       } else {
         showAlert("Error", resp, "error");
       }
@@ -217,22 +217,50 @@ function saveProfileImg() {
   form.append("img", img.files[0]);
 
   var req = new XMLHttpRequest();
-  req.onreadystatechange = function(){
+  req.onreadystatechange = function () {
     if (req.readyState == 4 && req.status == 200) {
       resp = req.responseText;
 
       if (resp == "empty") {
-        showAlert(
-          "Error",
-          "Please select your profile image.",
-          "error"
-        );
-      }else{
+        showAlert("Error", "Please select your profile image.", "error");
+      } else {
         // document.getElementById("imageContainer").src = resp;
         window.location.reload();
       }
     }
-  }
-  req.open("POST","/zencart/scripts/save-profile-img-process.php");
+  };
+  req.open("POST", "/zencart/scripts/save-profile-img-process.php");
+  req.send(form);
+}
+
+function addNewAddress() {
+  var lineOne = document.getElementById("lineOne");
+  var lineTwo = document.getElementById("lineTwo");
+  var city = document.getElementById("city");
+  var province = document.getElementById("province");
+  var pcode = document.getElementById("pcode");
+  var country = document.getElementById("country");
+
+  var form = new FormData();
+  form.append("lineOne", lineOne.value);
+  form.append("lineTwo", lineTwo.value);
+  form.append("city", city.value);
+  form.append("province", province.value);
+  form.append("pcode", pcode.value);
+  form.append("country", country.value);
+
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      resp = req.responseText;
+      // alert(resp);
+      if (resp == "success") {
+        showAlert("Success", "Your address has been successfully added!", "success");
+      } else {
+        showAlert("Error", resp, "error");
+      }
+    }
+  };
+  req.open("POST", "/zencart/scripts/add-new-address.php", true);
   req.send(form);
 }

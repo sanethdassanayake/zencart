@@ -226,21 +226,53 @@ if (isset($_SESSION["user"])) {
                                                 <div class="modal-dialog  modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="d-flex justify-content-between align-items-center p-2">
-                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Change Mobile</h1>
+                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Address</h1>
                                                             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <div>
-                                                                <label class="form-label" for="lineOne">Line 1</label>
-                                                                <input class="form-control" id="lineOne" type="text">
+                                                            <div class="mb-2">
+                                                                <label class="form-label" for="lineOne">Address Line 1</label>
+                                                                <input class="form-control shadow-none" id="lineOne" type="text" placeholder="123 Elm Street">
                                                             </div>
-                                                            <div>
-                                                                <label class="form-label" for="lineTwo">Line 1</label>
-                                                                <input class="form-control" id="lineTwo" type="text">
+                                                            <div class="mb-2">
+                                                                <label class="form-label" for="lineTwo">Address Line 2</label>
+                                                                <input class="form-control shadow-none" id="lineTwo" type="text" placeholder="Apt 4B">
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <label class="form-label" for="city">City</label>
+                                                                <input class="form-control shadow-none" id="city" type="text" placeholder="Colombo">
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <label class="form-label" for="province">Province / State</label>
+                                                                <input class="form-control shadow-none" id="province" type="text" placeholder="Western Province">
+                                                            </div>
+                                                            <div class="d-flex gap-2">
+                                                                <div class="w-100">
+                                                                    <label class="form-label" for="pcode">Postal Code</label>
+                                                                    <input class="form-control shadow-none" id="pcode" type="text" placeholder="00500">
+                                                                </div>
+                                                                <div class="w-100">
+                                                                    <label class="form-label" for="country">Country</label>
+
+                                                                    <select class="form-select shadow-none" id="country">
+                                                                       <option value="0">Select Country</option>
+                                                                       <?php
+                                                                        $rs4 = Database::search("SELECT * FROM `country`");
+                                                                        $num4 = $rs4->num_rows;
+
+                                                                        for ($i = 0; $i < $num4; $i++) {
+                                                                            $row4 = $rs4->fetch_assoc();
+                                                                        ?>
+                                                                            <option value="<?php echo ($row4["id"]); ?>"><?php echo ($row4["name"]); ?></option>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex justify-content-end gap-2 p-2">
-                                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="">Change</button>
+                                                            <button type="button" class="btn btn-primary" onclick="addNewAddress();">Add</button>
                                                         </div>
                                                     </div>
                                                 </div>
