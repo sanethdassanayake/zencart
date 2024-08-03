@@ -59,8 +59,6 @@
                                 Remember me
                             </label>
                         </div>
-                        <hr class="border-secondary">
-                        <p style="font-size: 14px;">Create a bussiness with ZenCart <a href="create-biz.php">Start selling</a></p>
                     </div>
                 </div>
                 <div class="row d-flex justify-content-center">
