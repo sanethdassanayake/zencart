@@ -37,6 +37,6 @@ if (empty($email)) {
             echo ("Oh no! Your account has been temporarily blocked. Please contact support for assistance.");
         }
     } else {
-        echo ("It looks like this account isn't registered yet. Please sign up to get started.");
+        echo("Oops! It looks like your email and password don’t match. Please check and try again.");
     }
 }
