@@ -2,9 +2,22 @@
     <div class="row d-none d-lg-block">
         <div class="col-12 d-flex justify-content-between p-2" style="background-color: #000000;">
             <div>
-                <a href="#" class="text-decoration-none text-white ms-4">
-                    Become a seller
-                </a>
+                <?php
+                if (isset($_SESSION["user"])) {
+                    $userId = $_SESSION["user"]["id"];
+                ?>
+                    <a href="/zencart/create-biz.php" class="text-decoration-none text-white ms-4">
+                        Become a seller
+                    </a>
+                <?php
+                } else {
+                ?>
+                    <a href="/zencart/signin.php" class="text-decoration-none text-white ms-4">
+                        Become a seller
+                    </a>
+                <?php
+                }
+                ?>
                 <a href="#" class="text-decoration-none text-white ms-4">
                     Help & Contact
                 </a>
@@ -95,23 +108,33 @@
                     </button>
                     <ul class="dropdown-menu border-0 shadow p-0">
                         <div class="d-grid p-2" style="width: 200px;">
-                            <a href="orders.php" class="text-decoration-none text-dark nav-button p-2">My Orders</a>
-                            <a href="messages.php" class="text-decoration-none text-dark nav-button p-2">Messages</a>
-                            <a href="payments.php" class="text-decoration-none text-dark nav-button p-2">Payments</a>
-                            <a href="ratings.php" class="text-decoration-none text-dark nav-button p-2">My Ratings</a>
-                            <a href="settings.php" class="text-decoration-none text-dark nav-button p-2">Settings</a>
-                            <hr class="border-secondary">
-                            <a href="#" class="text-decoration-none text-dark nav-button p-2">Log Out</a>
                             <?php
-                            $rs2 = Database::search("SELECT * FROM `business` WHERE `user_id` = '$userId'");
-                            $num2 = $rs2->num_rows;
-
-                            if ($num2 > 0) {
+                            if (isset($_SESSION["user"])) {
                             ?>
+                                <a href="orders.php" class="text-decoration-none text-dark nav-button p-2">My Orders</a>
+                                <a href="messages.php" class="text-decoration-none text-dark nav-button p-2">Messages</a>
+                                <a href="payments.php" class="text-decoration-none text-dark nav-button p-2">Payments</a>
+                                <a href="ratings.php" class="text-decoration-none text-dark nav-button p-2">My Ratings</a>
+                                <a href="settings.php" class="text-decoration-none text-dark nav-button p-2">Settings</a>
+                                <?php
+                                $rs2 = Database::search("SELECT * FROM `business` WHERE `user_id` = '$userId'");
+                                $num2 = $rs2->num_rows;
+
+                                if ($num2 > 0) {
+                                ?>
+                                    <hr class="border-secondary">
+                                    <a href="#" class="text-decoration-none text-dark nav-button p-2">My Products</a>
+                                    <a href="#" class="text-decoration-none text-dark nav-button p-2">Stock</a>
+                                    <a href="#" class="text-decoration-none text-dark nav-button p-2">Sales</a>
+                                <?php
+                                }
+                                ?>
                                 <hr class="border-secondary">
-                                <a href="#" class="text-decoration-none text-secondary nav-button p-2">My Products</a>
-                                <a href="#" class="text-decoration-none text-secondary nav-button p-2">Stock</a>
-                                <a href="#" class="text-decoration-none text-secondary nav-button p-2">Sales</a>
+                                <a href="#" class="text-decoration-none text-dark nav-button p-2">Log Out</a>
+                            <?php
+                            } else {
+                            ?>
+                                <a href="signin.php" class="text-decoration-none text-dark nav-button p-2">Sign In</a>
                             <?php
                             }
                             ?>
