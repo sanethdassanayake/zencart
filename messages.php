@@ -1,3 +1,7 @@
+<?php
+include "includes/connection.php";
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,7 +68,7 @@
                             <div class="nav flex-column nav-pills bg-white" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                 <button class="nav-link d-flex align-items-center p-1 active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
                                     <div class="p-1">
-                                        <img src="assets/images/profile-img/user1.jpg" class="message-user-img" alt="">
+                                        <img src="/zencart/assets/images/profile-img/66adcb9eec0eb.png" class="message-user-img" alt="">
                                     </div>
                                     <div class="text-start d-none d-lg-block p-1">
                                         Saneth Dassanayake
@@ -72,7 +76,7 @@
                                 </button>
                                 <button class="nav-link d-flex align-items-center p-1" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                                     <div class="p-1">
-                                        <img src="assets/images/profile-img/user1.jpg" class="message-user-img" alt="">
+                                        <img src="/zencart/assets/images/profile-img/66ae6ce9e329a.png" class="message-user-img" alt="">
                                     </div>
                                     <div class="text-start d-none d-lg-block p-1">
                                         David Guitta
@@ -83,7 +87,7 @@
                                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
 
                                     <div class="col-12 d-flex align-items-center p-2 gap-2">
-                                        <img src="assets/images/profile-img/user1.jpg" class="message-user-img" alt="">
+                                        <img src="/zencart/assets/images/profile-img/66adcb9eec0eb.png" class="message-user-img" alt="">
                                         <h5 class="my-2" style="font-weight: 600; font-size: 18px;">Saneth Dassanayake</h5>
                                     </div>
                                     <div class="col-12 p-2 border-top border-bottom overflow-y-scroll" style="height: 500px;">
@@ -122,7 +126,7 @@
                                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
 
                                     <div class="col-12 d-flex align-items-center p-2 gap-2">
-                                        <img src="assets/images/profile-img/user1.jpg" class="message-user-img" alt="">
+                                        <img src="/zencart/assets/images/profile-img/66ae6ce9e329a.png" class="message-user-img" alt="">
                                         <h5 class="my-2" style="font-weight: 600; font-size: 18px;">Saneth Dassanayake</h5>
                                     </div>
                                     <div class="col-12 p-2 border-top border-bottom overflow-y-scroll" style="height: 500px;">
