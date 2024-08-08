@@ -1,3 +1,9 @@
+<?php
+include "includes/connection.php";
+session_start();
+
+$userId = $_SESSION["user"]["id"];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,60 +67,56 @@
                         <div class="col-12 p-2">
                             <div class="row gap-2">
 
-                                <div class="d-flex rounded-2 bg-white shadow-sm py-2 px-3">
-                                    <div>
-                                        <img src="assets/images/product-img/green-t.png" class="product-rating-img" alt="">
-                                    </div>
-                                    <div class="d-grid">
-                                        <h5 class="mt-2" style="font-weight: 400; font-size: 18px;">Blue Nike Shoe M size men original</h5>
-                                        <h5 class="" style="font-weight: 400; font-size: 14px;">Men T-shirts</h5>
-                                        <div class="d-flex gap-1">
-                                            <i class="bi bi-star-fill rating-star"></i>
-                                            <i class="bi bi-star-fill rating-star"></i>
-                                            <i class="bi bi-star-fill rating-star"></i>
-                                            <i class="bi bi-star-half rating-star"></i>
-                                            <i class="bi bi-star rating-star"></i>
+                                <?php
+                                $rs = Database::search("SELECT * FROM `rating` INNER JOIN `product` ON `product`.`id` = `rating`.`product_id` INNER JOIN `category` ON `category`.`id` = `product`.`category_id` INNER JOIN `product_type` ON `product_type`.`id` = `product`.`product_type_id` INNER JOIN `product_img` ON `product`.`id` = `product_img`.`id` WHERE `user_id` = '$userId'");
+                                $num = $rs->num_rows;
+
+                                for ($i = 0; $i < $num; $i++) {
+                                    $row = $rs->fetch_assoc();
+
+                                ?>
+                                    <div class="d-flex rounded-2 bg-white shadow-sm py-2 px-3">
+                                        <div>
+                                            <img src="<?php echo ($row["path"]); ?>" class="product-rating-img" alt="">
                                         </div>
-                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat dolorem delectus totam dolorum a sed obcaecati consectetur dolor</p>
-                                        <div class="d-flex justify-content-between">
-                                            <div>
-                                                <span style="font-size: 14px;">23:32PM 05-23-2024</span>
+                                        <div class="d-grid">
+                                            <h5 class="mt-2" style="font-weight: 400; font-size: 18px;"><?php echo ($row["title"]); ?></h5>
+                                            <h5 class="" style="font-weight: 400; font-size: 14px;"><?php echo ($row["type_name"] . " " . $row["cat_name"]); ?></h5>
+                                            <div class="d-flex gap-1">
+                                                <?php
+                                                $defaultRating = 5;
+                                                $ret = $defaultRating - $row["rating"];
+
+                                                for ($i = 0; $i < $row["rating"]; $i++) {
+                                                ?>
+                                                    <i class="bi bi-star-fill rating-star"></i>
+                                                <?php
+                                                }
+
+                                                for ($i = 0; $i < $ret; $i++) {
+                                                ?>
+                                                    <i class="bi bi-star rating-star"></i>
+                                                <?php
+                                                }
+
+                                                ?>
                                             </div>
-                                            <div class="d-flex justify-content-end gap-2">
-                                                <a href="#" class="text-dark">Edit</a>
-                                                <a href="#" class="text-dark">Remove</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="d-flex rounded-2 bg-white shadow-sm py-2 px-3">
-                                    <div>
-                                        <img src="assets/images/product-img/green-t.png" class="product-rating-img" alt="">
-                                    </div>
-                                    <div class="d-grid">
-                                        <h5 class="mt-2" style="font-weight: 400; font-size: 18px;">Blue Nike Shoe M size men original</h5>
-                                        <h5 class="" style="font-weight: 400; font-size: 14px;">Men T-shirts</h5>
-                                        <div class="d-flex gap-1">
-                                            <i class="bi bi-star-fill rating-star"></i>
-                                            <i class="bi bi-star-fill rating-star"></i>
-                                            <i class="bi bi-star-fill rating-star"></i>
-                                            <i class="bi bi-star-half rating-star"></i>
-                                            <i class="bi bi-star rating-star"></i>
-                                        </div>
-                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat dolorem delectus totam dolorum a sed obcaecati consectetur dolor</p>
-                                        <div class="d-flex justify-content-between">
-                                            <div>
-                                                <span style="font-size: 14px;">23:32PM 05-23-2024</span>
-                                            </div>
-                                            <div class="d-flex justify-content-end gap-2">
-                                                <a href="#" class="text-dark">Edit</a>
-                                                <a href="#" class="text-dark">Remove</a>
+                                            <p><?php echo($row["review"]);?></p>
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <span style="font-size: 14px;"><?php echo($row["date"]);?></span>
+                                                </div>
+                                                <div class="d-flex justify-content-end gap-2">
+                                                    <a href="#" class="text-dark">Edit</a>
+                                                    <a href="#" class="text-dark">Remove</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                
+                                <?php
+                                }
+                                ?>
+
                             </div>
                         </div>
                     </div>
