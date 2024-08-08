@@ -1,3 +1,7 @@
+<?php
+include "includes/connection.php";
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,34 +60,57 @@
                     </div>
 
                     <div class="col">
+                        <?php
+                        $userId = $_SESSION["user"]["id"];
+                        $rs = Database::search("SELECT * FROM `order_history`WHERE `user_id` = '$userId'");
+                        $num = $rs->num_rows;
+                        ?>
+
                         <div class="col-12 d-flex justify-content-between">
-                            <h5 class="my-2" style="font-weight: 600; font-size: 18px;">My Orders (3)</h5>
-                            <h5 class="my-2" style="font-weight: 600; font-size: 18px;">Total: $98.97</h5>
+                            <h5 class="my-2" style="font-weight: 600; font-size: 18px;">My Orders (<?php echo ($num); ?>)</h5>
                         </div>
 
-                        <div class="col-12 d-flex justify-content-between align-items-center bg-white product p-3 mb-2 rounded-2 shadow-sm">
-                            <img src="assets/images/product-img/green-t.png" class="orders-product-img" alt="">
-                            <div class="d-grid">
-                                <h5 class="col-12 d-block text-truncate mt-2" style="font-weight: 400; font-size: 18px;">Blue Nike Shoe M size men original</h5>
-                                <h5 class="" style="font-weight: 400; font-size: 14px;">Men T-shirts</h5>
-                                <div class="d-flex gap-1">
-                                    <i class="bi bi-star-fill rating-star"></i>
-                                    <i class="bi bi-star-fill rating-star"></i>
-                                    <i class="bi bi-star-fill rating-star"></i>
-                                    <i class="bi bi-star-half rating-star"></i>
-                                    <i class="bi bi-star rating-star"></i>
+                        <?php
+                        if ($num > 0) {
+                            for ($i = 0; $i < $num; $i++) {
+                                $row = $rs->fetch_assoc();
+
+                                $rs2 = Database::search("SELECT * FROM `stock` INNER JOIN `size` ON `stock`.`size_id` = `size`.`id` INNER JOIN `material` ON `stock`.`material_id` = `material`.`id` INNER JOIN `color` ON `stock`.`color_id` = `color`.`id` INNER JOIN `product` ON `stock`.`product_id` = `product`.`id` INNER JOIN `status` ON `stock`.`status_id` = `status`.`id` INNER JOIN `business` ON `stock`.`business_id` = `business`.`id` INNER JOIN `category` ON `category`.`id` = `product`.`category_id` INNER JOIN `brand` ON `brand`.`id` = `product`.`brand_id` INNER JOIN `product_type` ON `product_type`.`id` = `product`.`product_type_id` INNER JOIN `product_img` ON `product`.`id` = `product_img`.`product_id`  WHERE `product`.`id` = '" . $row["product_id"] . "'");
+                                $productRow = $rs2->fetch_assoc();
+                        ?>
+                                <div class="col-12 d-flex justify-content-between align-items-center bg-white product p-3 mb-2 rounded-2 shadow-sm">
+                                    <img src="<?php echo ($productRow["path"]); ?>" class="orders-product-img" alt="">
+                                    <div class="d-grid">
+                                        <h5 class="col-12 d-block text-truncate mt-2" style="font-weight: 400; font-size: 18px;"><?php echo ($productRow["title"]); ?></h5>
+                                        <h5 class="" style="font-weight: 400; font-size: 14px;"><?php echo ($productRow["name"]); ?></h5>
+                                        <div class="d-flex gap-1">
+                                            <i class="bi bi-star-fill rating-star"></i>
+                                            <i class="bi bi-star-fill rating-star"></i>
+                                            <i class="bi bi-star-fill rating-star"></i>
+                                            <i class="bi bi-star-half rating-star"></i>
+                                            <i class="bi bi-star rating-star"></i>
+                                        </div>
+                                    </div>
+                                    <h5 class="mt-2" style="font-weight: 400; font-size: 18px;">X<?php echo($row["qty"]);?></h5>
+                                    <h5 class="mt-2" style="font-weight: 400; font-size: 18px;">$<?php echo($row["price"]);?></h5>
+                                    <!-- <div class="d-grid gap-2">
+                                        <a href="#" class="text-decoration-none text-dark">Order details ></a>
+                                        <button class="btn btn-dark"><i class="bi bi-bag"></i></button>
+                                        <button class="btn btn-dark"><i class="bi bi-trash3"></i></button>
+                                    </div> -->
                                 </div>
+                            <?php
+                            }
+                        } else {
+                            ?>
+                            <div class="mt-2">
+                                <h3 class="text-secondary"><i class="bi bi-exclamation-triangle-fill text-secondary"></i> You do not have any ordered product to show</h3>
+                                <button class="btn btn-dark mt-2">Start Shopping</button>
                             </div>
-                            <h5 class="mt-2" style="font-weight: 400; font-size: 18px;">x1</h5>
-                            <h5 class="mt-2" style="font-weight: 400; font-size: 18px;">$32.99</h5>
-                            <div class="d-grid gap-2">
-                                <a href="#" class="text-decoration-none text-dark">Order details ></a>
-                                <button class="btn btn-dark"><i class="bi bi-bag"></i></button>
-                                <button class="btn btn-dark"><i class="bi bi-trash3"></i></button>
-                            </div>
-                        </div>
+                        <?php
+                        }
+                        ?>
 
-                         
                     </div>
 
                 </div>
