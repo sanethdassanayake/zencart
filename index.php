@@ -103,7 +103,7 @@ session_start();
                         $row = $rs->fetch_assoc();
                 ?>
                         <a href="category-item.php?id=<?php echo ($row["id"]); ?>" class="text-decoration-none text-dark">
-                            <h5 class="rounded-pill bg-white px-4 py-2"><?php echo ($row["name"]); ?></h5>
+                            <h5 class="rounded-pill bg-white px-4 py-2"><?php echo ($row["cat_name"]); ?></h5>
                         </a>
                 <?php
                     }
@@ -117,231 +117,56 @@ session_start();
             <div class="col-12" style="margin-bottom: 500px;">
                 <div class="row d-flex justify-content-center">
 
-                    <!-- Card 1 -->
-                    <div class="col-6 col-lg-3 col-xl-2">
-                        <div class="row p-1">
+                    <?php
+                    $rs2 = Database::search("SELECT * FROM `stock` INNER JOIN `size` ON `stock`.`size_id` = `size`.`id` INNER JOIN `material` ON `stock`.`material_id` = `material`.`id` INNER JOIN `color` ON `stock`.`color_id` = `color`.`id` INNER JOIN `product` ON `stock`.`product_id` = `product`.`id` INNER JOIN `status` ON `stock`.`status_id` = `status`.`id` INNER JOIN `business` ON `stock`.`business_id` = `business`.`id` INNER JOIN `category` ON `category`.`id` = `product`.`category_id` INNER JOIN `brand` ON `brand`.`id` = `product`.`brand_id` INNER JOIN `product_type` ON `product_type`.`id` = `product`.`product_type_id` INNER JOIN `product_img` ON `product`.`id` = `product_img`.`product_id` ");
+                    $num2 = $rs2->num_rows;
 
-                            <div class="card shadow-sm product border-0 p-0 position-relative">
-                                <div class="row card-body p-2">
-                                    <div class="position-absolute d-flex justify-content-end">
-                                        <a href="#" class="text-decoration-none text-dark fs-4">
-                                            <i class="bi bi-heart"></i>
-                                        </a>
-                                    </div>
+                    for ($i = 0; $i < $num2; $i++) {
+                        $row2 = $rs2->fetch_assoc();
+                    ?>
+                        <!-- Card 1 -->
+                        <div class="col-6 col-lg-3 col-xl-2">
+                            <div class="row p-1">
 
-                                    <img src="assets/images/product-img/black-t.png" alt="product-image" class="product-image">
-
-                                    <div class="text-center justify-content-center mt-2">
-                                        <h2 class="product-category">Man Shoes</h2>
-                                        <h2 class="product-name">Blue Nike Shoe</h2>
-                                        <div class="d-flex justify-content-center mb-2 gap-1">
-                                            <i class="bi bi-star-fill rating-star"></i>
-                                            <i class="bi bi-star-fill rating-star"></i>
-                                            <i class="bi bi-star-fill rating-star"></i>
-                                            <i class="bi bi-star-half rating-star"></i>
-                                            <i class="bi bi-star rating-star"></i>
+                                <div class="card shadow-sm product border-0 p-0 position-relative">
+                                    <div class="row card-body p-2">
+                                        <div class="position-absolute d-flex justify-content-end">
+                                            <a href="#" class="text-decoration-none text-dark fs-4">
+                                                <i class="bi bi-heart"></i>
+                                            </a>
                                         </div>
-                                        <div class="d-flex justify-content-center align-items-center gap-2">
-                                            <h2 class="after-price">$32.99</h2>
-                                            <h2 class="real-price"><s>$38.99</s></h2>
+
+                                        <img src="<?php echo($row2["path"]);?>" alt="product-image" class="product-image">
+
+                                        <div class="text-center justify-content-center mt-2">
+                                            <h2 class="product-category"><?php echo($row2["type_name"]);?> <?php echo($row2["cat_name"]);?></h2>
+                                            <h2 class="product-name"><?php echo($row2["title"]);?></h2>
+                                            <div class="d-flex justify-content-center mb-2 gap-1">
+                                                <i class="bi bi-star-fill rating-star"></i>
+                                                <i class="bi bi-star-fill rating-star"></i>
+                                                <i class="bi bi-star-fill rating-star"></i>
+                                                <i class="bi bi-star-half rating-star"></i>
+                                                <i class="bi bi-star rating-star"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-center align-items-center gap-2">
+                                                <h2 class="after-price">Rs <?php echo($row2["price"]);?></h2>
+                                                <?php
+                                                $discount = $row2["price"] * 20/100;
+                                                $total = $row2["price"] + $discount;
+                                                $final = round($total);
+                                                ?>
+                                                <h2 class="real-price"><s>Rs <?php echo($final);?></s></h2>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
-
                         </div>
-                    </div>
-                    <!-- Card 1 -->
-
-                    <!-- Card 2 -->
-                    <div class="col-6 col-lg-3 col-xl-2">
-                        <div class="row p-1">
-
-                            <a href="#" class="p-0 text-decoration-none">
-                                <div class="card shadow-sm border-0 p-0 position-relative">
-                                    <div class="row card-body p-2">
-                                        <div class="position-absolute d-flex justify-content-end">
-                                            <a href="#" class="text-decoration-none text-dark fs-4">
-                                                <i class="bi bi-heart"></i>
-                                            </a>
-                                        </div>
-
-                                        <img src="assets/images/product-img/red-t.png" alt="product-image" class="product-image">
-
-                                        <div class="text-center justify-content-center mt-2">
-                                            <h2 class="product-category">Man Shoes</h2>
-                                            <h2 class="product-name">Blue Nike Shoe</h2>
-                                            <div class="d-flex justify-content-center mb-2 gap-1">
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-half rating-star"></i>
-                                                <i class="bi bi-star rating-star"></i>
-                                            </div>
-                                            <div class="d-flex justify-content-center align-items-center gap-2">
-                                                <h2 class="after-price">$32.99</h2>
-                                                <h2 class="real-price"><s>$38.99</s></h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-
-                    <!-- Card 3 -->
-                    <div class="col-6 col-lg-3 col-xl-2">
-                        <div class="row p-1">
-
-                            <a href="#" class="p-0 text-decoration-none">
-                                <div class="card shadow-sm border-0 p-0 position-relative">
-                                    <div class="row card-body p-2">
-                                        <div class="position-absolute d-flex justify-content-end">
-                                            <a href="#" class="text-decoration-none text-dark fs-4">
-                                                <i class="bi bi-heart"></i>
-                                            </a>
-                                        </div>
-
-                                        <img src="assets/images/product-img/green-t.png" alt="product-image" class="product-image">
-
-                                        <div class="text-center justify-content-center mt-2">
-                                            <h2 class="product-category">Man Shoes</h2>
-                                            <h2 class="product-name">Blue Nike Shoe</h2>
-                                            <div class="d-flex justify-content-center mb-2 gap-1">
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-half rating-star"></i>
-                                                <i class="bi bi-star rating-star"></i>
-                                            </div>
-                                            <div class="d-flex justify-content-center align-items-center gap-2">
-                                                <h2 class="after-price">$32.99</h2>
-                                                <h2 class="real-price"><s>$38.99</s></h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-
-                    <!-- Card 4 -->
-                    <div class="col-6 col-lg-3 col-xl-2">
-                        <div class="row p-1">
-
-                            <a href="#" class="p-0 text-decoration-none">
-                                <div class="card shadow-sm border-0 p-0 position-relative">
-                                    <div class="row card-body p-2">
-                                        <div class="position-absolute d-flex justify-content-end">
-                                            <a href="#" class="text-decoration-none text-dark fs-4">
-                                                <i class="bi bi-heart"></i>
-                                            </a>
-                                        </div>
-
-                                        <img src="assets/images/product-img/olive-t.png" alt="product-image" class="product-image">
-
-                                        <div class="text-center justify-content-center mt-2">
-                                            <h2 class="product-category">Man Shoes</h2>
-                                            <h2 class="product-name">Blue Nike Shoe</h2>
-                                            <div class="d-flex justify-content-center mb-2 gap-1">
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-half rating-star"></i>
-                                                <i class="bi bi-star rating-star"></i>
-                                            </div>
-                                            <div class="d-flex justify-content-center align-items-center gap-2">
-                                                <h2 class="after-price">$32.99</h2>
-                                                <h2 class="real-price"><s>$38.99</s></h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
-
-                    <!-- Card 4 -->
-                    <div class="col-6 col-lg-3 col-xl-2">
-                        <div class="row p-1">
-
-                            <a href="#" class="p-0 text-decoration-none">
-                                <div class="card shadow-sm border-0 p-0 position-relative">
-                                    <div class="row card-body p-2">
-                                        <div class="position-absolute d-flex justify-content-end">
-                                            <a href="#" class="text-decoration-none text-dark fs-4">
-                                                <i class="bi bi-heart"></i>
-                                            </a>
-                                        </div>
-
-                                        <img src="assets/images/product-img/red-t.png" alt="product-image" class="product-image">
-
-                                        <div class="text-center justify-content-center mt-2">
-                                            <h2 class="product-category">Man Shoes</h2>
-                                            <h2 class="product-name">Blue Nike Shoe</h2>
-                                            <div class="d-flex justify-content-center mb-2 gap-1">
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-half rating-star"></i>
-                                                <i class="bi bi-star rating-star"></i>
-                                            </div>
-                                            <div class="d-flex justify-content-center align-items-center gap-2">
-                                                <h2 class="after-price">$32.99</h2>
-                                                <h2 class="real-price"><s>$38.99</s></h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
-
-                    <!-- Card 4 -->
-                    <div class="col-6 col-lg-3 col-xl-2">
-                        <div class="row p-1">
-
-                            <a href="#" class="p-0 text-decoration-none">
-                                <div class="card shadow-sm border-0 p-0 position-relative">
-                                    <div class="row card-body p-2">
-                                        <div class="position-absolute d-flex justify-content-end">
-                                            <a href="#" class="text-decoration-none text-dark fs-4">
-                                                <i class="bi bi-heart"></i>
-                                            </a>
-                                        </div>
-
-                                        <img src="assets/images/product-img/red-t.png" alt="product-image" class="product-image">
-
-                                        <div class="text-center justify-content-center mt-2">
-                                            <h2 class="product-category">Man Shoes</h2>
-                                            <h2 class="product-name">Blue Nike Shoe</h2>
-                                            <div class="d-flex justify-content-center mb-2 gap-1">
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-fill rating-star"></i>
-                                                <i class="bi bi-star-half rating-star"></i>
-                                                <i class="bi bi-star rating-star"></i>
-                                            </div>
-                                            <div class="d-flex justify-content-center align-items-center gap-2">
-                                                <h2 class="after-price">$32.99</h2>
-                                                <h2 class="real-price"><s>$38.99</s></h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
+                        <!-- Card 1 -->
+                    <?php
+                    }
+                    ?>
 
                 </div>
             </div>
