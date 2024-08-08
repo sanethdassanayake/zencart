@@ -1,3 +1,9 @@
+<?php
+include "includes/connection.php";
+session_start();
+
+$userId = $_SESSION["user"]["id"];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,8 +66,12 @@
 
                             <div class="col-12 p-3 d-flex justify-content-between align-items-center shadow-sm rounded-2 bg-white">
                                 <div class="d-flex align-items-center gap-3">
-                                    <img src="assets/images/profile-img/user1.jpg" class="overview-user-img" alt="user-img">
-                                    <h5 class="mt-2 fs-4" style="font-weight: 600;">Saneth Dassanayake</h5>
+                                    <?php
+                                    $rs = Database::search("SELECT * FROM `user` WHERE `id` = '$userId'");
+                                    $row = $rs->fetch_assoc();
+                                    ?>
+                                    <img src="<?php echo($row["img"]);?>" class="overview-user-img" alt="user-img">
+                                    <h5 class="mt-2 fs-4" style="font-weight: 600;"><?php echo($row["fname"]." ".$row["lname"]);?></h5>
                                 </div>
                                 <div>
                                     <a href="settings.php" class="btn me-0 rounded-pill shadow border-0">
