@@ -74,33 +74,29 @@ function signUp() {
   req.send(form);
 }
 
-function bizRegister() {
+function bizRegister(addressId) {
   var bname = document.getElementById("bname");
   var country_code = document.getElementById("country_code");
   var mobile = document.getElementById("mobile");
   var email = document.getElementById("email");
-  var address = document.getElementById("address");
-  var country_id = document.getElementById("country_id");
 
   var form = new FormData();
   form.append("bname", bname.value);
   form.append("country_code", country_code.value);
   form.append("mobile", mobile.value);
   form.append("email", email.value);
-  form.append("address", address.value);
-  form.append("country_id", id.value);
+  form.append("address", addressId);
 
   var req = new XMLHttpRequest();
   req.onreadystatechange = function () {
     if (req.readyState == 4 && req.status == 200) {
       resp = req.responseText;
+
       if (resp == "success") {
-        showAlert("Success", "Success", "success");
-      } else if (resp == "signin") {
         showAlert(
-          "Error",
-          "It looks like you don’t have an account yet. Please sign up first.",
-          "error"
+          "Success",
+          "Business account has successfuly created",
+          "success"
         );
       } else {
         showAlert("Error", resp, "error");
@@ -255,7 +251,11 @@ function addNewAddress() {
       resp = req.responseText;
       // alert(resp);
       if (resp == "success") {
-        showAlert("Success", "Your address has been successfully added!", "success");
+        showAlert(
+          "Success",
+          "Your address has been successfully added!",
+          "success"
+        );
       } else {
         showAlert("Error", resp, "error");
       }
