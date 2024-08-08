@@ -12,6 +12,7 @@ $userId = $_SESSION["user"]["id"];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - ZenCart</title>
 
+    <link rel="icon" href="assets/images/system-img/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
@@ -70,8 +71,8 @@ $userId = $_SESSION["user"]["id"];
                                     $rs = Database::search("SELECT * FROM `user` WHERE `id` = '$userId'");
                                     $row = $rs->fetch_assoc();
                                     ?>
-                                    <img src="<?php echo($row["img"]);?>" class="overview-user-img" alt="user-img">
-                                    <h5 class="mt-2 fs-4" style="font-weight: 600;"><?php echo($row["fname"]." ".$row["lname"]);?></h5>
+                                    <img src="<?php echo ($row["img"]); ?>" class="overview-user-img" alt="user-img">
+                                    <h5 class="mt-2 fs-4" style="font-weight: 600;"><?php echo ($row["fname"] . " " . $row["lname"]); ?></h5>
                                 </div>
                                 <div>
                                     <a href="settings.php" class="btn me-0 rounded-pill shadow border-0">
@@ -122,11 +123,11 @@ $userId = $_SESSION["user"]["id"];
                                         <a href="messages.php" class="mt-2 text-decoration-none text-dark text-nowrap" style="font-size: 18px;">My Products</a>
                                     </div>
                                     <div class="col-3 d-grid text-center">
-                                    <i class="bi bi-diagram-2 fs-1"></i>
+                                        <i class="bi bi-diagram-2 fs-1"></i>
                                         <a href="payments.php" class="mt-2 text-decoration-none text-dark text-nowrap" style="font-size: 18px;">Stock</a>
                                     </div>
                                     <div class="col-3 d-grid text-center">
-                                    <i class="bi bi-graph-up-arrow fs-1"></i>
+                                        <i class="bi bi-graph-up-arrow fs-1"></i>
                                         <a href="ratings.php" class="mt-2 text-decoration-none text-dark text-nowrap" style="font-size: 18px;">Sales</a>
                                     </div>
                                 </div>

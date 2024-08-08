@@ -12,6 +12,7 @@ $userId = $_SESSION["user"]["id"];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - ZenCart</title>
 
+    <link rel="icon" href="assets/images/system-img/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
@@ -101,10 +102,10 @@ $userId = $_SESSION["user"]["id"];
 
                                                 ?>
                                             </div>
-                                            <p><?php echo($row["review"]);?></p>
+                                            <p><?php echo ($row["review"]); ?></p>
                                             <div class="d-flex justify-content-between">
                                                 <div>
-                                                    <span style="font-size: 14px;"><?php echo($row["date"]);?></span>
+                                                    <span style="font-size: 14px;"><?php echo ($row["date"]); ?></span>
                                                 </div>
                                                 <div class="d-flex justify-content-end gap-2">
                                                     <a href="#" class="text-dark">Edit</a>

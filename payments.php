@@ -13,6 +13,7 @@ $userId = $_SESSION["user"]["id"];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - ZenCart</title>
 
+    <link rel="icon" href="assets/images/system-img/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
