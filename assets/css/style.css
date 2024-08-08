@@ -113,7 +113,7 @@
 }
 
 .orders-product-img {
-  height: 150px;
+  height: 100px;
   width: 100px;
   object-fit: cover;
   object-position: top;
