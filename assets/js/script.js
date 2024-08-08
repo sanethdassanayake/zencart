@@ -264,3 +264,38 @@ function addNewAddress() {
   req.open("POST", "/zencart/scripts/add-new-address.php", true);
   req.send(form);
 }
+
+function addFevourite(productId) {
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+      resp = req.responseText;
+      if (resp == "added") {
+        showAlert(
+          "Success",
+          "The product has been successfully added to your favourites.",
+          "success"
+        );
+      } else if (resp == "removed") {
+        showAlert(
+          "Success",
+          "The product has been successfully removed from your favourites.",
+          "success"
+        );
+      } else {
+        showAlert("Error", resp, "error");
+      }
+    }
+  };
+  req.open(
+    "GET",
+    "/zencart/scripts/add-fevourite-process.php?pid=" + productId,
+    true
+  );
+  req.send();
+}
+
+function moveToProduct(productId) {
+  window.location.href = "product-view.php?pid=" + productId;
+}
+

@@ -10,6 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - ZenCart</title>
 
+    <link rel="icon" href="assets/images/system-img/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
@@ -124,23 +125,36 @@ session_start();
                     for ($i = 0; $i < $num2; $i++) {
                         $row2 = $rs2->fetch_assoc();
                     ?>
-                        <!-- Card 1 -->
-                        <div class="col-6 col-lg-3 col-xl-2">
+                        <!-- Card -->
+                        <div class="col-6 col-lg-3 col-xl-2" onclick="moveToProduct(<?php echo ($row2['product_id']) ?>);">
                             <div class="row p-1">
 
                                 <div class="card shadow-sm product border-0 p-0 position-relative">
                                     <div class="row card-body p-2">
                                         <div class="position-absolute d-flex justify-content-end">
-                                            <a href="#" class="text-decoration-none text-dark fs-4">
-                                                <i class="bi bi-heart"></i>
-                                            </a>
+                                            <button class="btn border-0 text-decoration-none text-dark fs-5" onclick="addFevourite(<?php echo ($row2['product_id']) ?>);">
+                                                <?php
+                                                $fRs = Database::search("SELECT * FROM `fevourite` WHERE `user_id` = '$userId' AND `product_id` = '" . $row2['product_id'] . "'");
+                                                $fNum = $fRs->num_rows;
+
+                                                if ($fNum > 0) {
+                                                ?>
+                                                    <i class="bi bi-heart-fill"></i>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <i class="bi bi-heart"></i>
+                                                <?php
+                                                }
+                                                ?>
+                                            </button>
                                         </div>
 
-                                        <img src="<?php echo($row2["path"]);?>" alt="product-image" class="product-image">
+                                        <img src="<?php echo ($row2["path"]); ?>" alt="product-image" class="product-image">
 
                                         <div class="text-center justify-content-center mt-2">
-                                            <h2 class="product-category"><?php echo($row2["type_name"]);?> <?php echo($row2["cat_name"]);?></h2>
-                                            <h2 class="product-name"><?php echo($row2["title"]);?></h2>
+                                            <h2 class="product-category"><?php echo ($row2["type_name"]); ?> <?php echo ($row2["cat_name"]); ?></h2>
+                                            <h2 class="product-name"><?php echo ($row2["title"]); ?></h2>
                                             <div class="d-flex justify-content-center mb-2 gap-1">
                                                 <i class="bi bi-star-fill rating-star"></i>
                                                 <i class="bi bi-star-fill rating-star"></i>
@@ -149,13 +163,13 @@ session_start();
                                                 <i class="bi bi-star rating-star"></i>
                                             </div>
                                             <div class="d-flex justify-content-center align-items-center gap-2">
-                                                <h2 class="after-price">Rs <?php echo($row2["price"]);?></h2>
+                                                <h2 class="after-price">Rs <?php echo ($row2["price"]); ?></h2>
                                                 <?php
-                                                $discount = $row2["price"] * 20/100;
+                                                $discount = $row2["price"] * 20 / 100;
                                                 $total = $row2["price"] + $discount;
                                                 $final = round($total);
                                                 ?>
-                                                <h2 class="real-price"><s>Rs <?php echo($final);?></s></h2>
+                                                <h2 class="real-price"><s>Rs <?php echo ($final); ?></s></h2>
                                             </div>
                                         </div>
                                     </div>
@@ -163,7 +177,7 @@ session_start();
 
                             </div>
                         </div>
-                        <!-- Card 1 -->
+                        <!-- Card -->
                     <?php
                     }
                     ?>
@@ -175,6 +189,7 @@ session_start();
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
