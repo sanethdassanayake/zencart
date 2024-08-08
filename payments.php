@@ -1,3 +1,10 @@
+<?php
+include "includes/connection.php";
+session_start();
+
+$userId = $_SESSION["user"]["id"];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,16 +65,16 @@
                     <div class="col">
                         <div class="col-12 d-flex justify-content-between mb-3">
                             <h5 class="my-2" style="font-weight: 600; font-size: 18px;">Payments</h5>
-                            <div>
+                            <!-- <div>
                                 <select class="form-select border-0 shadow-sm" name="" id="">
-                                    <option value="" selected>Newest Items</option>
-                                    <option value="">Oldest Itmes</option>
-                                    <option value="">Payment Success</option>
-                                    <option value="">Payment Declined</option>
-                                    <option value="">Price: High to Low</option>
-                                    <option value="">Price: Low to High</option>
+                                    <option value="1" selected>Newest Items</option>
+                                    <option value="2">Oldest Itmes</option>
+                                    <option value="3">Payment Success</option>
+                                    <option value="4">Payment Declined</option>
+                                    <option value="5">Price: High to Low</option>
+                                    <option value="6">Price: Low to High</option>
                                 </select>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="col-12 bg-white rounded-2 shadow-sm p-2">
@@ -79,26 +86,39 @@
                                         <td>Price</td>
                                         <td>Time/Date</td>
                                         <td>Status</td>
-                                        <td>Action</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td scope="row">Blue Nike Shoe M size men original</td>
-                                        <td>x1</td>
-                                        <td>$39.99</td>
-                                        <td>21:32PM 07-23-2024</td>
-                                        <td class="badge bg-success text-white m-2">Success</td>
-                                        <td><a href="#">Info</a></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">Blue Nike Shoe M size men original</td>
-                                        <td>x1</td>
-                                        <td>$39.99</td>
-                                        <td>21:32PM 07-23-2024</td>
-                                        <td class="badge bg-danger text-white m-2">Declined</td>
-                                        <td><a href="#">Info</a></i></td>
-                                    </tr>
+                                    <?php
+                                    
+                                    $rs = Database::search("SELECT * FROM `payment_history` INNER JOIN `product` ON `product`.`id` = `payment_history`.`product_id` WHERE `user_id` = '$userId'");
+                                    $num = $rs->num_rows;
+
+                                    for ($i = 0; $i < $num; $i++) {
+                                        $row = $rs->fetch_assoc();
+
+                                    ?>
+                                        <tr>
+                                            <td scope="row"><?php echo ($row["title"]); ?></td>
+                                            <td>x<?php echo ($row["qty"]); ?></td>
+                                            <td>$<?php echo ($row["cost"]); ?></td>
+                                            <td><?php echo ($row["time_date"]); ?></td>
+                                            <?php
+                                            if ($row["status_id"] == '3') {
+                                            ?>
+                                                <td class="badge bg-success text-white m-2">Success</td>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <td class="badge bg-danger text-white m-2">Declined</td>
+                                            <?php
+                                            }
+                                            ?>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+
                                 </tbody>
                             </table>
                         </div>
